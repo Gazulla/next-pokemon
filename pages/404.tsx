@@ -1,10 +1,9 @@
-import Layout from "@/components/Layout"
+import Layout from "@/components/Layout";
 
 export default function page404() {
-    return (
-        <Layout>
-            <h1>404 - Page Not Found</h1>
-        </Layout>
-    )
-
+  return (
+    <Layout>
+      <h1>404 - Page Not Found</h1>
+    </Layout>
+  );
 }
