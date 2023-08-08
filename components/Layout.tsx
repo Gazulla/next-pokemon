@@ -1,8 +1,9 @@
+import { ChildrenType } from "@/types";
 import Footer from "./Footer";
 import Header from "./Header";
 
 type Props = {
-  children: JSX.Element,
+  children: ChildrenType
 };
 export default function Layout({ children }: Props) {
   return (
