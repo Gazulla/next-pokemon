@@ -14,14 +14,20 @@ export default function Home() {
   const { filterPokemons } = useFilters();
   const filteredPokemons = filterPokemons(pokemons);
   const numPokemons = pokemons.length;
+  const numFilteredPokemons = filteredPokemons.length;
+  console.log(JSON.stringify(pokemons.map((p) => p.name)));
+  console.log(JSON.stringify(filteredPokemons.map((p) => p.name)));
   return (
     <>
       <Head>
         <title>Pokemon Next App</title>
       </Head>
       <Layout>
-        <div className="flex flex-col place-items-center">
-          <Filters numPokemons={numPokemons}></Filters>
+        <div className="flex flex-col place-items-center w-full">
+          <Filters
+            numPokemons={numPokemons}
+            numFilteredPokemons={numFilteredPokemons}
+          ></Filters>
 
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-5">
             {filteredPokemons.map((pokemon: PokemonListElement, i) => {
@@ -37,10 +43,10 @@ export default function Home() {
           {loadingPokemons ? (
             <Spinner></Spinner>
           ) : numPokemons >= MAX_NUM_POKEMONS_TO_FETCH ? (
-            <p className="font-bold">You have loaded all Pokemons!!</p>
+            <p className="font-bold mt-10">You have loaded all Pokemons!!</p>
           ) : (
             <button
-              className={`flex justify-center place-items-center gap-2 relative  p-4 bg-red-600 hover:bg-red-500 border-black border-2 text-white font-bold w-6/12 mt-8 rounded-md  hover:shadow-xl duration-300`}
+              className={`flex justify-center place-items-center gap-2 relative  p-4 bg-red-600 hover:bg-red-500 border-black border-2 text-white font-bold  mt-8 rounded-md  hover:shadow-xl duration-300`}
               onClick={nextPage}
             >
               <div className="w-8 h-8 relative">
