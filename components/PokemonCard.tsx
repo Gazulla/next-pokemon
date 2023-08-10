@@ -1,17 +1,17 @@
-import Image from "next/image";
-import { PokemonListElement } from "@/types";
-
 import { useState } from "react";
+import Image from "next/image";
+import { capWord } from "@/utils/miscFunctions";
+import { PokemonListElement } from "@/types";
 import { POKEMON_TYPES } from "@/constants/appConstants";
+import Link from "next/link";
+
 type Props = {
   pokemon: PokemonListElement;
   index: number;
 };
+
 export default function PokemonCard({ pokemon, index }: Props) {
   const [attacksShown, setAttacksShown] = useState(1);
-  const capWord = (word: string) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  };
 
   const addAttack = () => {
     if (attacksShown < 5) {
@@ -45,25 +45,42 @@ export default function PokemonCard({ pokemon, index }: Props) {
           sizes="(max-width: 768px) 33vw, (max-width: 1200px) 50vw"
         ></Image>
       </div>
+
       <h3 className="font-bold text-2xl">{capWord(pokemon.name)}</h3>
+
       <div className="grid grid-cols-2">
         <div>
-          {pokemon.types.map((type, i) => {
-            return (
-              <div
-                style={{
-                  backgroundColor:
-                    POKEMON_TYPES.find((t) => t.name === pokemon.types[i])
-                      ?.color + "88",
-                }}
-                key={pokemon.name + "-" + type}
-                className="rounded-lg inline-block mr-2 mt-2 pb-0 px-3 font-semibold"
-              >
-                {capWord(type)}
-              </div>
-            );
-          })}
+          <div>
+            {pokemon.types.map((type, i) => {
+              return (
+                <div
+                  style={{
+                    backgroundColor:
+                      POKEMON_TYPES.find((t) => t.name === pokemon.types[i])
+                        ?.color + "88",
+                  }}
+                  key={pokemon.name + "-" + type}
+                  className="rounded-lg inline-block mr-2 mt-2 pb-0 px-3 font-semibold"
+                >
+                  {capWord(type)}
+                </div>
+              );
+            })}
+          </div>
+
+          <Link key={pokemon.name} href={`/pokemon/${pokemon.id}`}>
+            <button className="flex justify-center place-items-center gap-2 font-bold relative mr-3 mt-4 px-3 py-2 bg-red-600  hover:bg-red-500 duration-300 border-2 border-white rounded-md">
+              <Image
+                src="/static/pokeball.svg"
+                alt="Pokeball"
+                width={20}
+                height={20}
+              ></Image>
+              <p>Details</p>
+            </button>
+          </Link>
         </div>
+
         <div className="flex flex-col items-end">
           {pokemon.moves.slice(0, attacksShown).map((move) => {
             return (

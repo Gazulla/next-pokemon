@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import MultiRangeSlider from "./MultiRangeSlider";
 import useFilters from "@/hooks/useFilters";
+import { capWord } from "@/utils/miscFunctions";
 import {
   NEW_FILTERS,
   POKEMON_MAX_HEIGHT,
@@ -54,13 +55,8 @@ export default function Filters({
     showModal && document.body.classList.remove("overflow-hidden");
   };
 
-  const capWord = (word: string) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  };
-
   const modalColor =
     POKEMON_TYPES.find((t) => t.name === modalFilters.type)?.color || "#111111";
-  console.log("Rendering filters!");
 
   return (
     <>

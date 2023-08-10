@@ -10,7 +10,7 @@ export default function usePokemon() {
   const [loading, setLoading] = useState<boolean>(false);
   const [offset, setOffset] = useState<number>(0);
 
-  const mapPokemon = (pokemonRaw: any) => {
+  const mapPokemonCard = (pokemonRaw: any) => {
     return {
       id: pokemonRaw.id,
       name: pokemonRaw.name,
@@ -27,7 +27,6 @@ export default function usePokemon() {
 
   const getPokemonList = async () => {
     setLoading(true);
-    console.log("Fetching!!");
     try {
       let limit = POKEMONS_PER_PAGE;
       const dif = MAX_NUM_POKEMONS_TO_FETCH - pokemons.length;
@@ -38,21 +37,22 @@ export default function usePokemon() {
         setLoading(false);
         return;
       }
-      const abortController = new AbortController();
+
       const result = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`,
-        { signal: abortController.signal }
+        `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
       );
       const data = await result.json();
+
       const proms = await data.results.map(async (pokemon: { url: string }) => {
         const res = await fetch(pokemon.url);
         const data = await res.json();
-        return mapPokemon(data);
+        return mapPokemonCard(data);
       });
+
       const fetchedPokemons = await Promise.all(proms);
       setPokemons((prev) => [...prev, ...fetchedPokemons]);
     } catch (error) {
-      throw new Error("Error fetching data from the API.");
+      throw new Error("Error fetching Pokemon List from the API.");
     } finally {
       setLoading(false);
     }
