@@ -14,6 +14,23 @@ export interface PokemonListElement {
   height: number;
 }
 
+export interface PokemonDetails {
+  id: number;
+  name: string;
+  types: string[];
+  moves: string[];
+  img: string;
+  height: number;
+  weight: number;
+  abilities: string[];
+  hp: number;
+  attack: number;
+  defense: number;
+  specialAttack: number;
+  specialDefense: number;
+  speed: number;
+}
+
 // Filters
 export interface FiltersType {
   minHeight: number;

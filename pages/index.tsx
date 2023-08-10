@@ -24,22 +24,19 @@ export default function Home() {
       </Head>
       <Layout>
         <div className="flex flex-col place-items-center w-full">
-          <Filters
-            numPokemons={numPokemons}
-            numFilteredPokemons={numFilteredPokemons}
-          ></Filters>
+          <Filters numPokemons={numPokemons} numFilteredPokemons={numFilteredPokemons}></Filters>
+          {numFilteredPokemons !== 0 ? (
+            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-5">
+              {filteredPokemons.map((pokemon: PokemonListElement, i) => {
+                return <PokemonCard key={pokemon.name} pokemon={pokemon} index={i}></PokemonCard>;
+              })}
+            </section>
+          ) : (
+            <div className="mt-6 text-xl font-semibold">
+              No pokemons found with the current filters applied.
+            </div>
+          )}
 
-          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-5">
-            {filteredPokemons.map((pokemon: PokemonListElement, i) => {
-              return (
-                <PokemonCard
-                  key={pokemon.name}
-                  pokemon={pokemon}
-                  index={i}
-                ></PokemonCard>
-              );
-            })}
-          </section>
           {loadingPokemons ? (
             <Spinner></Spinner>
           ) : numPokemons >= MAX_NUM_POKEMONS_TO_FETCH ? (

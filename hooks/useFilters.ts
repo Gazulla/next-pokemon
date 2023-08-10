@@ -1,10 +1,7 @@
 import { useContext } from "react";
 import { FilterContext } from "../context/filtersContext";
 import { FiltersType, PokemonListElement } from "@/types";
-import {
-  POKEMON_MAX_HEIGHT,
-  POKEMON_MIN_HEIGHT,
-} from "@/constants/appConstants";
+import { POKEMON_MAX_HEIGHT, POKEMON_MIN_HEIGHT } from "@/constants/appConstants";
 
 export default function useFilters() {
   const { filters, setFilters } = useContext(FilterContext);

@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 import { PokemonListElement } from "@/types";
-import {
-  MAX_NUM_POKEMONS_TO_FETCH,
-  POKEMONS_PER_PAGE,
-} from "@/constants/appConstants";
+import { MAX_NUM_POKEMONS_TO_FETCH, POKEMONS_PER_PAGE } from "@/constants/appConstants";
 
 export default function usePokemon() {
   const [pokemons, setPokemons] = useState<PokemonListElement[]>([]);
@@ -14,12 +11,8 @@ export default function usePokemon() {
     return {
       id: pokemonRaw.id,
       name: pokemonRaw.name,
-      types: pokemonRaw.types.map(
-        (ty: { type: { name: string } }) => ty.type.name
-      ),
-      moves: pokemonRaw.moves
-        .slice(0, 5)
-        .map((mov: { move: { name: string } }) => mov.move.name),
+      types: pokemonRaw.types.map((ty: { type: { name: string } }) => ty.type.name),
+      moves: pokemonRaw.moves.slice(0, 5).map((mov: { move: { name: string } }) => mov.move.name),
       img: pokemonRaw.sprites.other.dream_world.front_default,
       height: pokemonRaw.height,
     };

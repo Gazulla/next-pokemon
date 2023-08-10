@@ -55,8 +55,7 @@ export default function Filters({
     showModal && document.body.classList.remove("overflow-hidden");
   };
 
-  const modalColor =
-    POKEMON_TYPES.find((t) => t.name === modalFilters.type)?.color || "#111111";
+  const modalColor = POKEMON_TYPES.find((t) => t.name === modalFilters.type)?.color || "#111111";
 
   return (
     <>
@@ -72,12 +71,7 @@ export default function Filters({
           href="#open-modal"
           onClick={() => handleModal(true)}
         >
-          <Image
-            src="/static/options.svg"
-            alt="Options"
-            width={40}
-            height={40}
-          ></Image>
+          <Image src="/static/options.svg" alt="Options" width={40} height={40}></Image>
         </a>
       </div>
       <div className="flex justify-between place-items-end w-full mb-2 gap-4">
@@ -86,8 +80,7 @@ export default function Filters({
             Loaded: <span className="font-bold">{numPokemons}</span>
           </div>
           <div>
-            Shown by filters:{" "}
-            <span className="font-bold">{numFilteredPokemons}</span>
+            Shown by filters: <span className="font-bold">{numFilteredPokemons}</span>
           </div>
         </div>
         <div>
@@ -107,8 +100,7 @@ export default function Filters({
         <div
           className="border-2"
           style={{
-            background:
-              "linear-gradient(to right, #1e293baa, #000000aa)," + modalColor,
+            background: "linear-gradient(to right, #1e293baa, #000000aa)," + modalColor,
           }}
         >
           <a
@@ -147,13 +139,13 @@ export default function Filters({
             <div>
               <a
                 href="#"
-                className={`flex justify-center place-items-center gap-2 relative  p-4 bg-red-600 hover:bg-red-500 border-black border-2 text-white font-bold  mt-8 rounded-md  hover:shadow-xl duration-300`}
+                className={`flex justify-center place-items-center gap-2 relative  p-4 bg-red-600 hover:bg-red-500 border-white border-2 text-white font-bold  mt-8 rounded-md  hover:shadow-xl duration-300`}
                 onClick={handleSubmit}
               >
                 Find
               </a>
               <button
-                className={`w-full flex justify-center place-items-center gap-2 relative  p-4 bg-red-600 hover:bg-red-500 border-black border-2 text-white font-bold  mt-8 rounded-md  hover:shadow-xl duration-300`}
+                className={`w-full flex justify-center place-items-center gap-2 relative  p-4 bg-red-600 hover:bg-red-500 border-white border-2 text-white font-bold  mt-8 rounded-md  hover:shadow-xl duration-300`}
                 onClick={handleReset}
               >
                 Clean

@@ -21,8 +21,7 @@ export default function PokemonCard({ pokemon, index }: Props) {
 
   // Color calcs
   const have2Types = pokemon.types.length > 1;
-  const color1 =
-    POKEMON_TYPES.find((t) => t.name === pokemon.types[0])?.color + "55";
+  const color1 = POKEMON_TYPES.find((t) => t.name === pokemon.types[0])?.color + "55";
   const color2 = have2Types
     ? POKEMON_TYPES.find((t) => t.name === pokemon.types[1])?.color + "55"
     : "#888888aa";
@@ -56,8 +55,7 @@ export default function PokemonCard({ pokemon, index }: Props) {
                 <div
                   style={{
                     backgroundColor:
-                      POKEMON_TYPES.find((t) => t.name === pokemon.types[i])
-                        ?.color + "88",
+                      POKEMON_TYPES.find((t) => t.name === pokemon.types[i])?.color + "88",
                   }}
                   key={pokemon.name + "-" + type}
                   className="rounded-lg inline-block mr-2 mt-2 pb-0 px-3 font-semibold"
@@ -70,12 +68,7 @@ export default function PokemonCard({ pokemon, index }: Props) {
 
           <Link key={pokemon.name} href={`/pokemon/${pokemon.id}`}>
             <button className="flex justify-center place-items-center gap-2 font-bold relative mr-3 mt-4 px-3 py-2 bg-red-600  hover:bg-red-500 duration-300 border-2 border-white rounded-md">
-              <Image
-                src="/static/pokeball.svg"
-                alt="Pokeball"
-                width={20}
-                height={20}
-              ></Image>
+              <Image src="/static/pokeball.svg" alt="Pokeball" width={20} height={20}></Image>
               <p>Details</p>
             </button>
           </Link>
@@ -102,7 +95,7 @@ export default function PokemonCard({ pokemon, index }: Props) {
           {attacksShown < 5 ? (
             <button
               onClick={() => addAttack()}
-              className="flex justify-center place-items-center gap-2 font-bold text-xl bg-red-600 hover:bg-red-500 border-black border-2 text-white rounded-full w-7/12 mt-3 pb-1 duration-300"
+              className="flex justify-center place-items-center gap-2 font-bold text-xl bg-red-600 hover:bg-red-500 border-white border-2 text-white rounded-full w-7/12 mt-3 pb-1 duration-300"
             >
               <p>+</p>
               <Image
