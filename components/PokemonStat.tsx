@@ -1,3 +1,5 @@
+import { MAX_STAT_VALUE } from "@/constants/appConstants";
+
 type Props = {
   name: string;
   value: number;
@@ -10,7 +12,7 @@ export default function PokemonStat({ name, value }: Props) {
         <div className="flex justify-end bg-slate-200 h-3 rounded-sm relative">
           <div
             className="bg-red-600 h-3 absolute rounded-sm"
-            style={{ width: value / 1.7 + "%" }}
+            style={{ width: value / (MAX_STAT_VALUE / 100) + "%" }}
           ></div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
 import { ChildrenType, FiltersContextType, FiltersType } from "@/types";
-import { NEW_FILTERS, POKEMON_MAX_HEIGHT, POKEMON_MIN_HEIGHT } from "@/constants/appConstants";
+import { NEW_FILTERS } from "@/constants/appConstants";
 
 type Props = {
   children: ChildrenType;

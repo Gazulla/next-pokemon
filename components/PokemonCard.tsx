@@ -35,6 +35,7 @@ export default function PokemonCard({ pokemon, index }: Props) {
         background: have2Types ? gradient : color1,
       }}
     >
+      {/* Image */}
       <div className="w-full relative aspect-square -top-7 -right-3">
         <Image
           fill
@@ -45,10 +46,12 @@ export default function PokemonCard({ pokemon, index }: Props) {
         ></Image>
       </div>
 
+      {/* Name */}
       <h3 className="font-bold text-2xl">{capWord(pokemon.name)}</h3>
 
       <div className="grid grid-cols-2">
         <div>
+          {/* Types */}
           <div>
             {pokemon.types.map((type, i) => {
               return (
@@ -66,8 +69,9 @@ export default function PokemonCard({ pokemon, index }: Props) {
             })}
           </div>
 
+          {/* Details Button */}
           <Link key={pokemon.name} href={`/pokemon/${pokemon.id}`}>
-            <button className="flex justify-center place-items-center gap-2 font-bold relative mr-3 mt-4 px-3 py-2 bg-red-600  hover:bg-red-500 duration-300 border-2 border-white rounded-md">
+            <button className="flex justify-center place-items-center gap-2 font-bold relative mr-3 mt-4 px-3 py-2 bg-red-600  md:hover:bg-red-500 duration-300 border-2 md:hover:scale-95 shadow-md shadow-black border-white rounded-md">
               <Image src="/static/pokeball.svg" alt="Pokeball" width={20} height={20}></Image>
               <p>Details</p>
             </button>
@@ -75,6 +79,7 @@ export default function PokemonCard({ pokemon, index }: Props) {
         </div>
 
         <div className="flex flex-col items-end">
+          {/* Moves */}
           {pokemon.moves.slice(0, attacksShown).map((move) => {
             return (
               <div
@@ -92,10 +97,11 @@ export default function PokemonCard({ pokemon, index }: Props) {
               </div>
             );
           })}
+          {/* Show more moves Button */}
           {attacksShown < 5 ? (
             <button
               onClick={() => addAttack()}
-              className="flex justify-center place-items-center gap-2 font-bold text-xl bg-red-600 hover:bg-red-500 border-white border-2 text-white rounded-full w-7/12 mt-3 pb-1 duration-300"
+              className="flex justify-center place-items-center gap-2 font-bold text-xl bg-red-600 md:hover:bg-red-500 md:hover:scale-95 shadow-md shadow-black border-white border-2 text-white rounded-full w-7/12 mt-3 pb-1 duration-300"
             >
               <p>+</p>
               <Image

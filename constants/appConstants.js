@@ -1,5 +1,6 @@
 export const POKEMON_MIN_HEIGHT = 0;
 export const POKEMON_MAX_HEIGHT = 89;
+export const MAX_STAT_VALUE = 170;
 export const MAX_NUM_POKEMONS_TO_FETCH = 151;
 export const POKEMONS_PER_PAGE = 20;
 

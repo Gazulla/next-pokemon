@@ -1,11 +1,19 @@
-import { useState, useEffect } from "react";
-import { PokemonListElement } from "@/types";
+import { useContext, useRef } from "react";
+import { PokemonContext } from "../context/pokemonContext";
+import { useEffect } from "react";
 import { MAX_NUM_POKEMONS_TO_FETCH, POKEMONS_PER_PAGE } from "@/constants/appConstants";
 
 export default function usePokemon() {
-  const [pokemons, setPokemons] = useState<PokemonListElement[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [offset, setOffset] = useState<number>(0);
+  const {
+    pokemons,
+    setPokemons,
+    loading,
+    setLoading,
+    offset,
+    setOffset,
+    isFirstFetch,
+    setIsFirstFetch,
+  } = useContext(PokemonContext);
 
   const mapPokemonCard = (pokemonRaw: any) => {
     return {
@@ -21,6 +29,9 @@ export default function usePokemon() {
   const getPokemonList = async () => {
     setLoading(true);
     try {
+      const newOffset = offset + POKEMONS_PER_PAGE;
+
+      // "Reaching fetch limit" calcs: no fetch more than necessary
       let limit = POKEMONS_PER_PAGE;
       const dif = MAX_NUM_POKEMONS_TO_FETCH - pokemons.length;
       if (dif < POKEMONS_PER_PAGE) {
@@ -31,19 +42,24 @@ export default function usePokemon() {
         return;
       }
 
+      // Get the list of pokemon URLs
       const result = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
+        `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${newOffset}`
       );
       const data = await result.json();
 
+      // Iterate every URL in the list to get the pokemon data
       const proms = await data.results.map(async (pokemon: { url: string }) => {
         const res = await fetch(pokemon.url);
         const data = await res.json();
         return mapPokemonCard(data);
       });
-
       const fetchedPokemons = await Promise.all(proms);
-      setPokemons((prev) => [...prev, ...fetchedPokemons]);
+
+      setPokemons([...pokemons, ...fetchedPokemons]);
+
+      // Set the new offset for the next fetch (Load more button)
+      setOffset(newOffset);
     } catch (error) {
       throw new Error("Error fetching Pokemon List from the API.");
     } finally {
@@ -52,13 +68,16 @@ export default function usePokemon() {
   };
 
   const nextPage = () => {
-    setOffset((prev) => prev + POKEMONS_PER_PAGE);
+    getPokemonList();
   };
 
   useEffect(() => {
-    getPokemonList();
+    if (isFirstFetch) {
+      setIsFirstFetch(false);
+      getPokemonList();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset]);
+  }, []);
 
   return { pokemons, loadingPokemons: loading, nextPage };
 }

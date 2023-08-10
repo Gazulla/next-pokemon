@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FilterContext } from "../context/filtersContext";
 import { FiltersType, PokemonListElement } from "@/types";
-import { POKEMON_MAX_HEIGHT, POKEMON_MIN_HEIGHT } from "@/constants/appConstants";
+import { NEW_FILTERS } from "@/constants/appConstants";
 
 export default function useFilters() {
   const { filters, setFilters } = useContext(FilterContext);
@@ -11,12 +11,7 @@ export default function useFilters() {
   };
 
   const clearFilters = () => {
-    setFilters({
-      minHeight: POKEMON_MIN_HEIGHT,
-      maxHeight: POKEMON_MAX_HEIGHT,
-      type: "all",
-      word: "",
-    });
+    setFilters(NEW_FILTERS);
   };
 
   const filterPokemons = (pokemons: PokemonListElement[]) => {

@@ -32,7 +32,7 @@ export default function Pokemon({ pokemon }: Props) {
       <Layout>
         <section className="flex flex-col  w-full mt-6 md:max-w-xl lg:max-w-6xl">
           <Link href={`/`}>
-            <div className="flex mb-2 font-semibold text-lg">
+            <div className="flex mb-2 font-semibold text-lg md:hover:text-red-600 duration-300">
               <Image
                 className="mr-1 w-4"
                 width={15}
@@ -45,7 +45,7 @@ export default function Pokemon({ pokemon }: Props) {
           </Link>
 
           <div
-            className="grid grid-cols-1 lg:grid-cols-3 w-full gap-6 p-5 md:p-10 rounded-xl border-white border-2"
+            className="grid grid-cols-1 lg:grid-cols-3 w-full gap-5 p-5 md:p-10 rounded-xl border-white border-2"
             style={{
               backgroundColor: color1,
               background: have2Types ? gradient : color1,
