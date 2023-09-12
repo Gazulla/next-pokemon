@@ -24,6 +24,7 @@ export default function Pokemon({ pokemon }: Props) {
     ? POKEMON_TYPES.find((t) => t.name === pokemon.types[1])?.color + "55"
     : "#888888aa";
   const gradient = "linear-gradient(to right," + color1 + "," + color2 + ")";
+
   return (
     <>
       <Head>
@@ -67,7 +68,7 @@ export default function Pokemon({ pokemon }: Props) {
 
             {/* Col 2 */}
             <div className="">
-              {/* Nme and Number */}
+              {/* Name and Number */}
               <div className="inline-block text-2xl mr-3 px-2 rounded-lg bg-slate-500 bg-opacity-40 mt-5">
                 {addZero(pokemon.id.toString())}
               </div>

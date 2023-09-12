@@ -15,7 +15,7 @@ export default function useFilters() {
   };
 
   const filterPokemons = (pokemons: PokemonListElement[]) => {
-    return [...pokemons].filter((pokemon) => {
+    return pokemons.filter((pokemon) => {
       return (
         (filters.type === "all" || pokemon.types.includes(filters.type)) &&
         pokemon.height >= filters.minHeight &&
