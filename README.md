@@ -1,6 +1,6 @@
 # Next Pokemon App
-
-Demo project made by Pedro Iván Gazulla Giménez  
+![Screenshot](next_pokemon_app_preview.png) 
+*Demo project made by Pedro Iván Gazulla Giménez*  
 
 This web app is a Pokemon viewer made with Next.js. The grid that shows loaded Pokemons is CSR and the Pokemon details page is SSR.  
 
